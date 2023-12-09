@@ -1,6 +1,9 @@
 FROM ubuntu:16.04
 
-FROM python:3.6.5
+FROM python:3.8-slim
+
+# Rest of your Dockerfile
+
 
 RUN apt-get update -y && \
     apt-get install -y python-pip python-dev
