@@ -1,5 +1,5 @@
 flask
 flask_restful
-sklearn 
+scikit-learn
 pandas
 numpy
