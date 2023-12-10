@@ -1,20 +1,24 @@
-# Use an official Python runtime as a parent image
+FROM ubuntu:16.04
+
 FROM python:3.8-slim
 
-# Set the working directory to /app
+# Rest of your Dockerfile
+
+RUN apt-get update -y && \
+    apt-get upgrade -y && \
+    apt-get install -y python3-pip python-dev-is-python3
+
+
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
+
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+RUN pip install -r requirements.txt
+
 COPY . /app
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+CMD python /app/model.py && python /app/server.py
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
 
-# Define environment variable
-ENV NAME World
-
-# Run app.py when the container launches
-CMD ["python", "server.py"]
+ 

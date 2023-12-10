@@ -1,5 +1,5 @@
-flask==3.0.0
-flask_restful==0.3.10
-scikit-learn==0.24.2
-pandas==2.0.3
-numpy==1.24.4
+flask
+flask_restful
+scikit-learn
+pandas
+numpy
