@@ -20,4 +20,5 @@ COPY . /app
 
 CMD python /app/model.py && python /app/server.py
 
+
  

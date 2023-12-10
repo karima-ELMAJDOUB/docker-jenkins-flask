@@ -2,7 +2,7 @@ import requests
 
 # Change the value of experience that you want to test
 url = 'http://127.0.0.1:5000/api'
-feature = [[5.8, 4.0, 1.2, 0.2]]
+feature = [[5.8, 4.0, 1.2, 5.2]]
 labels ={
   0: "setosa",
   1: "versicolor",
