@@ -1,13 +1,8 @@
 import requests
 
-# Change the value of experience that you want to test
+# Change the value of feature that you want to test
 url = 'http://127.0.0.1:5000/api'
-feature = [[5.8, 4.0, 1.2, 5.2]]
-labels ={
-  0: "setosa",
-  1: "versicolor",
-  2: "virginica"
-}
+feature = {'feature': [[5.8, 4.0, 1.2, 5.2]]}
 
-r = requests.post(url, json={'feature': feature})
-print(labels[r.json()])
+r = requests.post(url, json=feature)
+print(r.json())

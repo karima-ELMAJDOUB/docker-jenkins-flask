@@ -16,8 +16,10 @@ labels = {
 def predict():
     # Get the data from the POST request.
     data = request.get_json(force=True)
-    predict = model.predict(data['feature'])
-    return jsonify(predict[0].tolist())
+    feature = data.get('feature')  # Utilisez get pour éviter des erreurs si 'feature' n'est pas dans les données JSON
+    predict = model.predict(feature)
+    return jsonify({'prediction': labels[predict[0]]})
+
 
 # New route for the root path
 @app.route('/')
