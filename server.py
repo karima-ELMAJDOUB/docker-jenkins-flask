@@ -1,7 +1,7 @@
 import pickle
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # Load the model
 model = pickle.load(open('model.pkl', 'rb'))
@@ -23,7 +23,7 @@ def predict_default():
 def home():
     # Appel de la fonction de prédiction par défaut
     prediction_result = predict_default()
-    return f'Prediction result for default values: {prediction_result}'
+    return render_template('result.html', prediction_result=prediction_result)
 
 # Route pour l'API de prédiction
 @app.route('/api', methods=['POST'])
