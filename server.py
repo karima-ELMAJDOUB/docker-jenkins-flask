@@ -16,6 +16,7 @@ labels = {
 def home():
     return 'Hello, World!'
 
+# Modifier la route /api pour accepter également la méthode GET
 @app.route('/api', methods=['GET', 'POST'])
 def predict():
     if request.method == 'POST':
@@ -23,25 +24,13 @@ def predict():
             # Code de prédiction pour la méthode POST
             data = request.get_json(force=True)
             feature = data.get('feature')
-            
-            print(f"Received feature for prediction: {feature}")
-            
             predict = model.predict(feature)
-            
-            print(f"Prediction result: {predict}")
-            
-            prediction_label = labels[predict[0]]
-            
-            print(f"Prediction label: {prediction_label}")
-            
-            return jsonify({'prediction': prediction_label})
+            return jsonify({'prediction': labels[predict[0]]})
         except Exception as e:
-            print(f"An error occurred: {str(e)}")
-            return jsonify({'error': 'An error occurred during prediction.'})
+            return jsonify({'error': f'An error occurred during prediction: {str(e)}'})
     else:
         # Code pour la méthode GET
-        return 'This is a GET request. Use POST request with data for predictions.'
-
+        return 'Non prediction !'
 
 # New route for the root path
 #@app.route('/')
