@@ -11,31 +11,28 @@ labels = {
     2: "virginica"
 }
 
-## Nouvelle route pour la racine
+# Fonction de prédiction
+def predict_default():
+    # Utilisez des valeurs par défaut pour la prédiction
+    default_feature = [[5.8, 4.0, 1.2, 5.2]]
+    prediction = model.predict(default_feature)
+    return labels[prediction[0]]
+
+# Route pour la racine
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    # Appel de la fonction de prédiction par défaut
+    prediction_result = predict_default()
+    return f'Prediction result for default values: {prediction_result}'
 
-# Modifier la route /api pour accepter également la méthode GET
-@app.route('/api', methods=['GET', 'POST'])
+# Route pour l'API de prédiction
+@app.route('/api', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        try:
-            # Code de prédiction pour la méthode POST
-            data = request.get_json(force=True)
-            feature = data.get('feature')
-            predict = model.predict(feature)
-            return jsonify({'prediction': labels[predict[0]]})
-        except Exception as e:
-            return jsonify({'error': f'An error occurred during prediction: {str(e)}'})
-    else:
-        # Code pour la méthode GET
-        return 'Non prediction !'
-
-# New route for the root path
-#@app.route('/')
-#def home():
-# return 'Hello, World!'
+    # Code de prédiction pour la méthode POST
+    data = request.get_json(force=True)
+    feature = data.get('feature')
+    predict = model.predict(feature)
+    return jsonify({'prediction': labels[predict[0]]})
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
