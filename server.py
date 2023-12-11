@@ -11,15 +11,23 @@ labels = {
     2: "virginica"
 }
 
-# API endpoint for prediction
-@app.route('/api', methods=['POST'])
-def predict():
-    # Get the data from the POST request.
-    data = request.get_json(force=True)
-    feature = data.get('feature')  # Utilisez get pour éviter des erreurs si 'feature' n'est pas dans les données JSON
-    predict = model.predict(feature)
-    return jsonify({'prediction': labels[predict[0]]})
+## Nouvelle route pour la racine
+@app.route('/')
+def home():
+    return 'Hello, World!'
 
+# Modifier la route /api pour accepter également la méthode GET
+@app.route('/api', methods=['GET', 'POST'])
+def predict():
+    if request.method == 'POST':
+        # Code de prédiction pour la méthode POST
+        data = request.get_json(force=True)
+        feature = data.get('feature')
+        predict = model.predict(feature)
+        return jsonify({'prediction': labels[predict[0]]})
+    else:
+        # Code pour la méthode GET
+        return 'Hello, World!'
 
 # New route for the root path
 #@app.route('/')
