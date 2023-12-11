@@ -27,7 +27,7 @@ def predict():
         return jsonify({'prediction': labels[predict[0]]})
     else:
         # Code pour la méthode GET
-        return 'Hello, World!'
+        return 'non prediction !'
 
 # New route for the root path
 #@app.route('/')
