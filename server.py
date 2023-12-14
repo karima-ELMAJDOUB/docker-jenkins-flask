@@ -14,7 +14,7 @@ labels = {
 # Fonction de prédiction
 def predict_default():
     # Utilisez des valeurs par défaut pour la prédiction
-    default_feature = [[12.8, 12.0, 16.2, 20.2]]
+    default_feature = [[19.8, 16.0, 20.2, 30.2]]
     prediction = model.predict(default_feature)
     return labels[prediction[0]]
 
