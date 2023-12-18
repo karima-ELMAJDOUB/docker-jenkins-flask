@@ -7,6 +7,8 @@ Ce projet démontre la mise en œuvre d'un pipeline MLOps pour un modèle basé 
 - **`model.py`**: Script Python pour l'entraînement d'un modèle de classification sur le dataset Iris.
 - **`request.py`**: Script pour tester le modèle avec une requête d'échantillon.
 - **`server.py`**: Application Flask pour le déploiement du modèle.
+- **`Dockerfile`**: Fichier pour la construction de l'image Docker encapsulant l'environnement d'exécution.
+- **`requirements.txt`**: Liste des dépendances Python nécessaires pour exécuter l'application.
 
 ## Dataset Iris
 
